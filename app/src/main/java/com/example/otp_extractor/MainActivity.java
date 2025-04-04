@@ -3,6 +3,7 @@ package com.example.otp_extractor;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,8 +44,10 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < permissions.length; i++) {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(this, permissions[i] + " permission granted", Toast.LENGTH_SHORT).show();
+                    Log.d("permission granted", "onRequestPermissionsResult: ");
                 } else {
                     Toast.makeText(this, permissions[i] + " permission denied", Toast.LENGTH_SHORT).show();
+                    Log.d("permission denied", "onRequestPermissionsResult: ");
                 }
             }
         }
